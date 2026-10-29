@@ -5,9 +5,9 @@
 ![Power BI](https://img.shields.io/badge/Power%20BI-F2C811?logo=powerbi&logoColor=black)
 ![Tableau](https://img.shields.io/badge/Tableau-E97627?logo=tableau&logoColor=white)
 
-My individual write-up of a course project on the Olist Brazilian e-commerce dataset (9 CSV files, 99,441 orders). The project answered five business questions in four tools and compared the results. This repository documents the work I built end to end and, so the cross-tool comparison is complete, also includes the results for all five KPIs. My own contributions are marked **[my work]** and listed in [My role and contributions](#13-my-role-and-contributions).
+My write-up of a course project on the Olist Brazilian e-commerce dataset (9 CSV files, 99,441 orders). The project answered five business questions in four tools and compared the results. This repository documents the work I built end to end and, so the cross-tool comparison is complete, also includes the results for all five KPIs.
 
-**Contents:** [1 Summary](#1-summary) · [2 Problem](#2-business-problem-and-objective) · [3 Dataset](#3-dataset) · [4 KPIs](#4-the-5-business-kpis) · [5 Approach](#5-approach-by-module) · [6 Cleaning and modelling](#6-data-cleaning-and-modelling-notes) · [7 Results](#7-results-and-cross-tool-validation) · [8 Lessons](#8-data-quality-lessons) · [9 Insights](#9-key-business-insights) · [10 Screenshots](#10-dashboard-screenshots) · [11 Reproduce](#11-how-to-reproduce) · [12 Skills](#12-skills-demonstrated) · [13 My role](#13-my-role-and-contributions) · [14 Credit](#14-dataset-credit-and-licence-note)
+**Contents:** [1 Summary](#1-summary) · [2 Problem](#2-business-problem-and-objective) · [3 Dataset](#3-dataset) · [4 KPIs](#4-the-5-business-kpis) · [5 Approach](#5-approach-by-module) · [6 Cleaning and modelling](#6-data-cleaning-and-modelling-notes) · [7 Results](#7-results-and-cross-tool-validation) · [8 Lessons](#8-data-quality-lessons) · [9 Insights](#9-key-business-insights) · [10 Screenshots](#10-dashboard-screenshots) · [11 Reproduce](#11-how-to-reproduce) · [12 Skills](#12-skills-demonstrated) · [13 Credit](#13-dataset-credit-and-licence-note)
 
 ---
 
@@ -82,7 +82,7 @@ The same five KPIs were answered in each module, then compared. The modules ran 
 
 ### Module 1: Excel (Power Query, Data Model, PivotTables)  → [`excel/`](excel/)
 
-- **[my work]** Cleaned and loaded all 9 tables in Power Query and built the Data Model: 9 relationships plus 2 helper zip-lookup tables.
+- Cleaned and loaded all 9 tables in Power Query and built the Data Model: 9 relationships plus 2 helper zip-lookup tables.
 - KPIs were built as PivotTables from the Data Model, with distinct counts for orders because one order can have several payment rows.
 - Key decisions: keep all nulls in orders and reviews (they carry meaning), set 610 blank product categories to `unknown`, never connect the raw geolocation table.
 - Not published here: the workbook is about 132 MB and contains the raw data. The Power Query code and method notes are in [`excel/`](excel/).
@@ -236,20 +236,7 @@ Presentation: [`docs/Olist_Store_Analysis_Presentation.pptx`](docs/Olist_Store_A
 - **Data quality:** handling one-to-many joins, nulls with meaning, duplicate and parsing issues; reconciling the same KPI across four tools
 - **Communication:** KPI-to-insight write-ups and a final presentation
 
-## 13. My role and contributions
-
-This repository is my individual write-up. I built the data foundation in each module and the KPI 2 analysis. The queries, visuals and dashboards for KPI 1, 3, 4 and 5 were produced by other course participants and are shown only so the cross-tool comparison is complete.
-
-| Module | My work |
-| --- | --- |
-| Excel | Power Query cleaning of all 9 tables; Data Model with 9 relationships and 2 helper lookup tables; QA review of the Excel-stage KPI submissions |
-| MySQL | Built the database (10 tables, 9 foreign keys), loaded and verified the data, cleaned the 610 blank categories, exported the database; **KPI 2 query** |
-| Power BI | Data model (fresh CSV import, relationships, two zip-lookup tables); **KPI 2 DAX measures and page** |
-| Tableau | Data model across all 9 tables with Relationships, plus the shared calculated fields |
-
-Included for comparison, not my work: the KPI 1, 3, 4 and 5 queries and visuals, the Excel and Power BI dashboards, the Tableau worksheets and dashboard, and the presentations.
-
-## 14. Dataset credit and licence note
+## 13. Dataset credit and licence note
 
 Data: *Brazilian E-Commerce Public Dataset by Olist*, published on Kaggle by Olist. Check the licence on the [Kaggle dataset page](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) before reusing or redistributing the data. [TODO: confirm the licence terms and copy them here; I believe it is CC BY-NC-SA 4.0 but have not verified it.] The `.pbix` and `.twbx` files embed data, so the same terms apply to them.
 
