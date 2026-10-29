@@ -50,7 +50,7 @@ CALCULATE(AVERAGE('olist_order_payments_dataset'[payment_value]), 'olist_orders_
 Total Orders = DISTINCTCOUNT('olist_order_payments_dataset'[order_id])
 ```
 
-### KPI 2: 5-star orders paid by credit card (mine)
+### KPI 2: 5-star orders paid by credit card
 
 `CROSSFILTER(..., BOTH)` lets the reviews and payments tables filter each other through `orders`,
 so each order is counted once with `DISTINCTCOUNT`.
