@@ -5,7 +5,7 @@
 ![Power BI](https://img.shields.io/badge/Power%20BI-F2C811?logo=powerbi&logoColor=black)
 ![Tableau](https://img.shields.io/badge/Tableau-E97627?logo=tableau&logoColor=white)
 
-A team-based course project on the Olist Brazilian e-commerce dataset (9 CSV files, 99,441 orders). The team answered the same five business questions in four tools and compared the results. This repository holds the full analysis. My own contributions are marked **[my work]** and listed in [My role and contributions](#13-my-role-and-contributions).
+My individual write-up of a course project on the Olist Brazilian e-commerce dataset (9 CSV files, 99,441 orders). The project answered five business questions in four tools and compared the results. This repository documents the work I built end to end and, so the cross-tool comparison is complete, also includes the results for all five KPIs. My own contributions are marked **[my work]** and listed in [My role and contributions](#13-my-role-and-contributions).
 
 **Contents:** [1 Summary](#1-summary) · [2 Problem](#2-business-problem-and-objective) · [3 Dataset](#3-dataset) · [4 KPIs](#4-the-5-business-kpis) · [5 Approach](#5-approach-by-module) · [6 Cleaning and modelling](#6-data-cleaning-and-modelling-notes) · [7 Results](#7-results-and-cross-tool-validation) · [8 Lessons](#8-data-quality-lessons) · [9 Insights](#9-key-business-insights) · [10 Screenshots](#10-dashboard-screenshots) · [11 Reproduce](#11-how-to-reproduce) · [12 Skills](#12-skills-demonstrated) · [13 My role](#13-my-role-and-contributions) · [14 Credit](#14-dataset-credit-and-licence-note)
 
@@ -91,19 +91,19 @@ The same five KPIs were answered in each module, then compared. The modules ran 
 
 - **[my work]** Built the `olist_store` database in MySQL 8: 10 tables (9 source tables plus `geo_zip_lookup`), primary keys, 9 foreign keys, data loaded with `LOAD DATA LOCAL INFILE`, row counts checked against the source.
 - **[my work]** Cleaning: 610 blank categories updated to `unknown` (after adding an `unknown` row to the translation table so the foreign key holds). Nulls in orders and reviews left as they are.
-- **[my work]** KPI 2 query. The other four KPI queries are the team's.
+- **[my work]** KPI 2 query. The queries for KPI 1, 3, 4 and 5 were written by other course participants and are included for the comparison.
 - Files: [`01_schema.sql`](sql/01_schema.sql), [`02_load_data.sql`](sql/02_load_data.sql), [`03_kpi_queries.sql`](sql/03_kpi_queries.sql).
 
 ### Module 3: Power BI  → [`powerbi/`](powerbi/)
 
 - **[my work]** Built the data model from a fresh import of the 9 CSV files (independent of the SQL database): 7 core relationships plus 2 geo relationships through two zip-lookup tables, 610 blank categories set to `unknown`, data types checked.
-- **[my work]** KPI 2 measures in DAX (`CROSSFILTER ... BOTH` so reviews and payments filter through orders and each order is counted once). The other KPI visuals and the dashboard page are the team's.
+- **[my work]** KPI 2 measures in DAX (`CROSSFILTER ... BOTH` so reviews and payments filter through orders and each order is counted once). The other KPI visuals and the dashboard page were built by other course participants.
 - Measures are listed in [`powerbi/dax_measures.md`](powerbi/dax_measures.md).
 
 ### Module 4: Tableau  → [`tableau/`](tableau/)
 
 - **[my work]** Built the data model with Tableau Relationships (not joins) across all 9 tables, plus the shared calculated fields (delivery days, weekday / weekend type, order total payment, clean product category).
-- The KPI worksheets and the final dashboard are the team's.
+- The KPI worksheets and the final dashboard were built by other course participants.
 - Data source: the 9 tables exported from the Excel-cleaned data. The raw review file did not parse correctly in Tableau's text connector (unescaped quotes and commas inside multi-line review text produced 14 fields instead of 7), so the cleaned tables were used instead.
 
 ## 6. Data cleaning and modelling notes
@@ -238,7 +238,7 @@ Presentation: [`docs/Olist_Store_Analysis_Presentation.pptx`](docs/Olist_Store_A
 
 ## 13. My role and contributions
 
-This was a team-based course project. I built the foundation in each module and the KPI 2 analysis; other KPI visuals and the final dashboards were built by teammates and are included here as part of the full analysis.
+This repository is my individual write-up. I built the data foundation in each module and the KPI 2 analysis. The queries, visuals and dashboards for KPI 1, 3, 4 and 5 were produced by other course participants and are shown only so the cross-tool comparison is complete.
 
 | Module | My work |
 | --- | --- |
@@ -247,7 +247,7 @@ This was a team-based course project. I built the foundation in each module and 
 | Power BI | Data model (fresh CSV import, relationships, two zip-lookup tables); **KPI 2 DAX measures and page** |
 | Tableau | Data model across all 9 tables with Relationships, plus the shared calculated fields |
 
-Team work: KPI 1, 3, 4 and 5 queries and visuals, the Excel and Power BI dashboards, the Tableau worksheets and dashboard, and the presentations.
+Included for comparison, not my work: the KPI 1, 3, 4 and 5 queries and visuals, the Excel and Power BI dashboards, the Tableau worksheets and dashboard, and the presentations.
 
 ## 14. Dataset credit and licence note
 
