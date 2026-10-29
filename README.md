@@ -7,6 +7,10 @@
 
 This project analyzes the Olist Brazilian e-commerce dataset (9 CSV files, 99,441 orders) to answer five business questions using Excel, MySQL, Power BI and Tableau. I document the data preparation, modelling, KPI calculations, visualizations and cross-tool validation in this repository.
 
+> **Project Files & Raw Data Access:**  
+> Due to GitHub's file size limitations for large workbooks and BI models (`.pbix`, `.xlsx`, `.twbx`), the complete original project files and archives are hosted on Google Drive:  
+> 🔗 **[Download Complete Original Project Files (Google Drive)](https://drive.google.com/file/d/1ca68Fnm7OtB_7Q0hFLRPOwu2niMYlF3Q/view?usp=drive_link)**
+
 **Contents:** [1 Summary](#1-summary) · [2 Problem](#2-business-problem-and-objective) · [3 Dataset](#3-dataset) · [4 KPIs](#4-the-5-business-kpis) · [5 Approach](#5-approach-by-module) · [6 Cleaning and modelling](#6-data-cleaning-and-modelling-notes) · [7 Results](#7-results-and-cross-tool-validation) · [8 Lessons](#8-data-quality-lessons) · [9 Insights](#9-key-business-insights) · [10 Screenshots](#10-dashboard-screenshots) · [11 Reproduce](#11-how-to-reproduce) · [12 Skills](#12-skills-demonstrated) · [13 Credit](#13-dataset-credit-and-licence-note)
 
 ---
