@@ -1,6 +1,6 @@
 # Project notes (cleaned working log)
 
-Team-based course project (Data Analyst bootcamp). Same five KPIs answered in four tools (Excel, Power BI, SQL, Tableau) and cross-checked.
+Five KPIs answered in four tools (Excel, Power BI, SQL, Tableau) and cross-checked.
 Dataset: Olist Brazilian e-commerce, 9 CSV files (about 45 MB zipped).
 
 ## Common join columns
