@@ -1,11 +1,11 @@
-# Olist Store Analysis: 5 business KPIs answered and cross-checked in Excel, MySQL, Power BI and Tableau
+# Olist Store Analysis: 5 Business KPIs in Excel, MySQL, Power BI and Tableau
 
 ![Excel](https://img.shields.io/badge/Excel-217346?logo=microsoftexcel&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-00758F?logo=mysql&logoColor=white)
 ![Power BI](https://img.shields.io/badge/Power%20BI-F2C811?logo=powerbi&logoColor=black)
 ![Tableau](https://img.shields.io/badge/Tableau-E97627?logo=tableau&logoColor=white)
 
-My write-up of a course project on the Olist Brazilian e-commerce dataset (9 CSV files, 99,441 orders). The project answered five business questions in four tools and compared the results. This repository documents the work I built end to end and, so the cross-tool comparison is complete, also includes the results for all five KPIs.
+This project analyzes the Olist Brazilian e-commerce dataset (9 CSV files, 99,441 orders) to answer five business questions using Excel, MySQL, Power BI and Tableau. I document the data preparation, modelling, KPI calculations, visualizations and cross-tool validation in this repository.
 
 **Contents:** [1 Summary](#1-summary) · [2 Problem](#2-business-problem-and-objective) · [3 Dataset](#3-dataset) · [4 KPIs](#4-the-5-business-kpis) · [5 Approach](#5-approach-by-module) · [6 Cleaning and modelling](#6-data-cleaning-and-modelling-notes) · [7 Results](#7-results-and-cross-tool-validation) · [8 Lessons](#8-data-quality-lessons) · [9 Insights](#9-key-business-insights) · [10 Screenshots](#10-dashboard-screenshots) · [11 Reproduce](#11-how-to-reproduce) · [12 Skills](#12-skills-demonstrated) · [13 Credit](#13-dataset-credit-and-licence-note)
 
@@ -78,7 +78,7 @@ customers ──zip prefix──► geolocation (zip lookup) ◄──zip prefix
 
 ## 5. Approach by module
 
-The same five KPIs were answered in each module, then compared. The modules ran in this order: Excel, SQL and Power BI, Tableau.
+I used the same five KPIs across the four tools and compared the results to check consistency. My workflow covered Excel, MySQL, Power BI and Tableau.
 
 ### Module 1: Excel (Power Query, Data Model, PivotTables)  → [`excel/`](excel/)
 
@@ -89,21 +89,21 @@ The same five KPIs were answered in each module, then compared. The modules ran 
 
 ### Module 2: MySQL  → [`sql/`](sql/)
 
-- **[my work]** Built the `olist_store` database in MySQL 8: 10 tables (9 source tables plus `geo_zip_lookup`), primary keys, 9 foreign keys, data loaded with `LOAD DATA LOCAL INFILE`, row counts checked against the source.
-- **[my work]** Cleaning: 610 blank categories updated to `unknown` (after adding an `unknown` row to the translation table so the foreign key holds). Nulls in orders and reviews left as they are.
-- **[my work]** KPI 2 query. The queries for KPI 1, 3, 4 and 5 were written by other course participants and are included for the comparison.
+- Built the `olist_store` database in MySQL 8: 10 tables (9 source tables plus `geo_zip_lookup`), primary keys, 9 foreign keys, data loaded with `LOAD DATA LOCAL INFILE`, and row counts checked against the source.
+- Cleaned the data by updating 610 blank categories to `unknown` (after adding an `unknown` row to the translation table to preserve the foreign key). Nulls in orders and reviews were retained.
+- Wrote and validated the KPI queries, including the distinct-order count for KPI 2.
 - Files: [`01_schema.sql`](sql/01_schema.sql), [`02_load_data.sql`](sql/02_load_data.sql), [`03_kpi_queries.sql`](sql/03_kpi_queries.sql).
 
 ### Module 3: Power BI  → [`powerbi/`](powerbi/)
 
-- **[my work]** Built the data model from a fresh import of the 9 CSV files (independent of the SQL database): 7 core relationships plus 2 geo relationships through two zip-lookup tables, 610 blank categories set to `unknown`, data types checked.
-- **[my work]** KPI 2 measures in DAX (`CROSSFILTER ... BOTH` so reviews and payments filter through orders and each order is counted once). The other KPI visuals and the dashboard page were built by other course participants.
+- Built the data model from a fresh import of the 9 CSV files (independent of the SQL database): 7 core relationships plus 2 geo relationships through two zip-lookup tables, 610 blank categories set to `unknown`, and checked data types.
+- Created the KPI 2 DAX measures using `CROSSFILTER ... BOTH` so reviews and payments filter through orders and each order is counted once. I also documented the KPI measures and cross-tool results.
 - Measures are listed in [`powerbi/dax_measures.md`](powerbi/dax_measures.md).
 
 ### Module 4: Tableau  → [`tableau/`](tableau/)
 
-- **[my work]** Built the data model with Tableau Relationships (not joins) across all 9 tables, plus the shared calculated fields (delivery days, weekday / weekend type, order total payment, clean product category).
-- The KPI worksheets and the final dashboard were built by other course participants.
+- Built the data model using Tableau Relationships (not joins) across all 9 tables and created calculated fields for delivery days, weekday/weekend type, order total payment and cleaned product category.
+- Used the Tableau worksheets and dashboard to review the KPI results and compare them with the other tools.
 - Data source: the 9 tables exported from the Excel-cleaned data. The raw review file did not parse correctly in Tableau's text connector (unescaped quotes and commas inside multi-line review text produced 14 fields instead of 7), so the cleaned tables were used instead.
 
 ## 6. Data cleaning and modelling notes
@@ -165,14 +165,14 @@ The Power BI chart matches the SQL values for all five scores.
 
 ## 8. Data quality lessons
 
-**KPI 2: a validation win.** The first Excel version used `COUNTIFS` on a merged sheet and reported **42,581** orders. When the SQL database was built, my KPI 2 query (`COUNT(DISTINCT order_id)` over reviews joined to payments) returned **43,981**. I then wrote the same measure in Power BI DAX with `CROSSFILTER ... BOTH` and it also returned 43,981. A direct SQL join against the live database confirmed the figure, and the 1,400-order gap (about 3%) was traced to the original Excel lookup logic. **43,981** became the official number and Tableau later reproduced it. Two independent methods agreeing against one outlier is exactly what cross-tool validation is for.
+**KPI 2: a validation win.** My first Excel version used `COUNTIFS` on a merged sheet and reported **42,581** orders. When the SQL database was built, my KPI 2 query (`COUNT(DISTINCT order_id)` over reviews joined to payments) returned **43,981**. I then wrote the same measure in Power BI DAX with `CROSSFILTER ... BOTH` and it also returned 43,981. A direct SQL join against the database confirmed the figure, and the 1,400-order gap (about 3%) was traced to the original Excel lookup logic. **43,981** became the official number and Tableau later reproduced it. Two independent methods agreeing against one outlier is exactly what cross-tool validation is for.
 
 Other problems found and fixed along the way:
 
-- **Hardcoded KPI 5 values.** The first Excel submission had typed-in numbers and an unverified correlation. It was rebuilt with a real PivotTable, Data Model calculated columns and `CORREL`, then reproduced independently.
+- **Hardcoded KPI 5 values.** My initial Excel version had typed-in numbers and an unverified correlation. It was rebuilt with a real PivotTable, Data Model calculated columns and `CORREL`, then reproduced independently.
 - **Inflated Power BI chart.** KPI 5 first showed values of 142K to 713K instead of 10 to 21 days, caused by the default SUM aggregation on a raw column. Fixed with an average-based measure at order level.
 - **Row-count miscounts.** `wc -l` over-counted the review file (multi-line quoted text) and under-counted a file with no trailing newline. Real counts came from the database after loading.
-- **Wrong text in an insight panel.** A stale figure (12.09 days) and unfilled template placeholders were replaced with the verified numbers before sign-off.
+- **Wrong text in an insight panel.** A stale figure (12.09 days) and unfilled template placeholders were replaced with the verified numbers before finalizing the analysis.
 - **Ambiguous filter path.** Two accidental relationships created a hidden second path between customers and sellers; they were removed.
 
 ## 9. Key business insights
@@ -203,7 +203,7 @@ Other problems found and fixed along the way:
 
 **Power BI dashboard:** [TODO: add `images/powerbi_dashboard.png` after the On-Time Rate card and the payment-type donut are fixed (see Open items).]
 
-Presentation: [`docs/Olist_Store_Analysis_Presentation.pptx`](docs/Olist_Store_Analysis_Presentation.pptx). Working notes: [`docs/project_notes.md`](docs/project_notes.md).
+Supporting presentation: [`docs/Olist_Store_Analysis_Presentation.pptx`](docs/Olist_Store_Analysis_Presentation.pptx). Analysis notes: [`docs/project_notes.md`](docs/project_notes.md).
 
 ## 11. How to reproduce
 
@@ -240,9 +240,9 @@ Presentation: [`docs/Olist_Store_Analysis_Presentation.pptx`](docs/Olist_Store_A
 
 Data: *Brazilian E-Commerce Public Dataset by Olist*, published on Kaggle by Olist. Check the licence on the [Kaggle dataset page](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) before reusing or redistributing the data. [TODO: confirm the licence terms and copy them here; I believe it is CC BY-NC-SA 4.0 but have not verified it.] The `.pbix` and `.twbx` files embed data, so the same terms apply to them.
 
-Original code and documentation in this repository: [TODO: choose a licence, for example MIT.]
+Code and documentation in this repository: [TODO: choose a licence, for example MIT.]
 
-This is a course project and is not affiliated with Olist.
+This is a individual project and is not affiliated with Olist.
 
 ---
 
