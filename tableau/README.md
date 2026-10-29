@@ -25,7 +25,7 @@ produced 14 fields instead of 7), so the data source is the 9 tables as cleaned 
 
 Six worksheets and one dashboard: `KPI 1`, `KPI 2`, `KPI 3 Pet Shop Avg Delivery Days`,
 `KPI 4 _Avg_Price of sao paulo`, `KPI 4 Avg_Payment of Sao Paulo`, `KPI 5`, and `Dashboard`.
-The worksheets and the dashboard were built by other course participants.
+
 
 ## Calculated fields
 
