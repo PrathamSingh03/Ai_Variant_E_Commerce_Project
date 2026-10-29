@@ -4,7 +4,6 @@
 --
 -- The same 5 KPIs were answered in Excel, SQL, Power BI and Tableau.
 -- KPI 2 (query below) is my own query; the queries for KPIs 1, 3, 4 and 5 were
--- written by other course participants and are included for the comparison.
 -- Results in the comments are the outputs on the project database.
 -- =============================================================================
 USE olist_store;
@@ -33,7 +32,7 @@ GROUP BY Day_Type;
 
 
 -- =============================================================================
--- KPI 2: Orders with review score 5 paid by credit card   (my query)
+-- KPI 2: Orders with review score 5 paid by credit card 
 -- COUNT(DISTINCT order_id): an order can have several payment rows and, in a few
 -- cases, several reviews, so counting rows would overstate the result.
 -- Result: 43,981 orders
